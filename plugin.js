@@ -14,7 +14,8 @@ export default {
   async load(id, ssr) {
     if (!["@kitten1", "@kitten2"].includes(id)) return;
 
-    if (ssr === (id === "@kitten1")) await sleep(100);
+    let isSsr = ssr?.ssr ?? false;
+    if (isSsr === (id === "@kitten1")) await sleep(100);
     const ref = this.emitFile({
       type: "asset",
       name: id.slice(1),
