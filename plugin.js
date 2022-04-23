@@ -11,10 +11,10 @@ export default {
   resolveId(id) {
     if (["@kitten1", "@kitten2"].includes(id)) return id;
   },
-  async load(id, ssr) {
+  async load(id, options) {
     if (!["@kitten1", "@kitten2"].includes(id)) return;
 
-    let isSsr = ssr?.ssr ?? false;
+    let isSsr = options?.ssr ?? false;
     if (isSsr === (id === "@kitten1")) await sleep(100);
     const ref = this.emitFile({
       type: "asset",
